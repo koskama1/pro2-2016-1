@@ -1,5 +1,7 @@
 package cz.uhk.pro2.gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +21,10 @@ public class ScoreScreen extends Screen {
 				
 			}
 		});
+		
+		jButtonBack.setBounds(20, 20, 60, 60);
+		jButtonBack.setFont(new Font("Arial", Font.PLAIN, 8));
+		jButtonBack.setForeground(Color.RED);
 		
 		add(jButtonBack);
 	}

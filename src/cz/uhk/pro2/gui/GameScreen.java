@@ -20,6 +20,9 @@ public class GameScreen extends Screen {
 			}
 		});
 		
+		jButtonBack.setBounds(20, 20, 60, 60);
+		jButtonPause.setBounds(20, 90, 60, 60);
+		
 		add(jButtonBack);
 		add(jButtonPause);
 	}
