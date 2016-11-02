@@ -1,9 +1,16 @@
 package cz.uhk.pro2.gui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+
+import cz.uhk.pro2.model.Bird;
+import cz.uhk.pro2.model.Heart;
+import cz.uhk.pro2.model.Tube;
+import cz.uhk.pro2.model.World;
 
 public class GameScreen extends Screen {
 
@@ -22,9 +29,29 @@ public class GameScreen extends Screen {
 		
 		jButtonBack.setBounds(20, 20, 60, 60);
 		jButtonPause.setBounds(20, 90, 60, 60);
+		jButtonBack.setFont(new Font("Arial", Font.PLAIN, 8));
+		jButtonBack.setForeground(Color.RED);
+		jButtonPause.setFont(new Font("Arial", Font.PLAIN, 8));
+		jButtonPause.setForeground(Color.RED);
 		
 		add(jButtonBack);
 		add(jButtonPause);
+		
+		
+		//World
+		Bird bird = new Bird("Bird1", 240, 400);
+		World world = new World(bird);
+		world.addTube(new Tube(400, 400, Color.GREEN));
+		world.addTube(new Tube(600, 300, Color.GREEN));
+		world.addTube(new Tube(800, 500, Color.GREEN));
+		
+		world.addHeart(new Heart(500, 450));
+		world.addHeart(new Heart(700, 600));
+		
+		GameCanvas gameCanvas = new GameCanvas(world);
+		gameCanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
+		add(gameCanvas);
+		
 	}
 
 }

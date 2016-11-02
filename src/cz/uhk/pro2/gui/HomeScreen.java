@@ -1,5 +1,6 @@
 package cz.uhk.pro2.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class HomeScreen extends Screen {
 		
 		jLabelTitle.setBounds(10, 10, 460, 100);
 		jLabelTitle.setFont(new Font("Arial", Font.PLAIN, 40));
+		jLabelTitle.setForeground(Color.RED);
 		
 		jButtonPlay.setBounds(100, 400, 280, 50);
 		jButtonScore.setBounds(100, 460, 280, 50);
