@@ -3,7 +3,11 @@ package cz.uhk.pro2.gui;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
 
+import cz.uhk.pro2.model.Bird;
+import cz.uhk.pro2.model.Heart;
+import cz.uhk.pro2.model.Tube;
 import cz.uhk.pro2.model.World;
 
 public class GameCanvas extends Canvas {
@@ -17,7 +21,18 @@ public class GameCanvas extends Canvas {
 	public void paint(Graphics g) {
 		super.paint(g);
 		
-		g.setColor(Color.red);
-		g.fillRect(400, 400, 50, 50);
+		Bird bird = world.getBird();
+		bird.paint(g);
+		
+		
+		List<Heart> hearts = world.getHearts();
+		for(Heart heart : hearts){
+			heart.paint(g);
+		}
+		
+		List<Tube> tubes = world.getTubes();
+		for(Tube tube : tubes){
+			tube.paint(g);
+		}		
 	}
 }

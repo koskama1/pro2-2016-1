@@ -1,5 +1,8 @@
 package cz.uhk.pro2.model;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Bird {
 
 	private String name;
@@ -15,6 +18,22 @@ public class Bird {
 		speed = 0;
 		lives = 3;
 	}
+	
+	public void paint(Graphics g){
+		g.setColor(Color.BLUE);
+		
+		g.fillRect(
+				(int) getPositionX() - 25,
+				(int) getPositionY() - 25,
+				50,
+				50
+				);
+	}
+	
+	public void update(float deltaTime){
+		positionX += World.SPEED * deltaTime;
+	}
+	
 	public String getJmeno(){
 		return name;
 	}
