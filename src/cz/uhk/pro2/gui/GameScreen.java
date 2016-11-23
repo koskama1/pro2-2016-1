@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import cz.uhk.pro2.model.Bird;
@@ -20,6 +21,10 @@ public class GameScreen extends Screen {
 	private long lastTimeMillis;
 	
 	private Timer timer; 
+	
+	private Bird bird;
+	
+	private JLabel jLabelScore, jLabelLives;
 
 	public GameScreen(MainFrame mainFrame) {
 		super(mainFrame);
@@ -30,6 +35,7 @@ public class GameScreen extends Screen {
 		jButtonBack.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				timer.stop();
 				mainFrame.setScreen(new HomeScreen(mainFrame));				
 			}
 		});
@@ -60,6 +66,16 @@ public class GameScreen extends Screen {
 		add(jButtonBack);
 		add(jButtonPause);
 		
+		jLabelLives = new JLabel("Lives: " + Bird.DEFAULT_LIVES);
+		jLabelScore = new JLabel("Score: " + Bird.DEFAULT_SCORE);
+		
+		jLabelLives.setBounds(260, 20, 12, 60);
+		jLabelScore.setBounds(100, 20, 120, 60);
+		
+		add(jLabelLives);
+		add(jLabelScore);
+		
+		
 		
 		//World
 		Bird bird = new Bird("Bird1", 240, 400);
@@ -84,6 +100,14 @@ public class GameScreen extends Screen {
 				float delta = (currentTimeMillis - lastTimeMillis)/1000f;
 				System.out.println(delta);
 				world.update(delta);
+				
+				jLabelLives.setText("Lives: " + bird.getLives());
+				jLabelScore.setText("Score: " + bird.getScore());
+				
+				if(!bird.isALive()){
+					timer.stop();
+				}
+				
 				gameCanvas.repaint();
 				
 				lastTimeMillis = currentTimeMillis;
@@ -92,6 +116,28 @@ public class GameScreen extends Screen {
 		
 		lastTimeMillis = System.currentTimeMillis();
 		timer.start();
+		
+		@Override
+		public void crashTube(Tube tube) {
+			bird.removeLive();
+			bird.setPositionY(tube.getCenterY());
+		}
+		
+		@Override
+		public void catchHeart(Heart heart) {
+			heart.setPositionY(-100);
+			bird.catchHeart();
+		}
+		
+		@Override
+		public void outOf() {
+			bird.setPositionY(MainFrame.HEIGHT / 2);
+			bird.setSpeed(Bird.JUMP / 2);
+			
+			bird.removeLive();
+			
+		}
+		
 		
 	}
 

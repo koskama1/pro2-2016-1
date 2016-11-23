@@ -19,6 +19,29 @@ public class World {
 	
 	public void update(float deltaTime){
 		bird.update(deltaTime);
+		
+		if(bird.isOutOf()){
+			worlListener.outOf();
+		}
+		for(Heart heart : hearts){
+			heart.update(deltaTime);
+			
+			if(bird.collideWith(heart)){
+				worldListener.catchHeart(heart);
+			}
+		}
+		for(Tube tube : tubes){
+			tube.update(deltaTime);
+			
+			if(bird.collideWith(tube)){
+				tube.setCounted(true)
+				worlListener.crashTube(tube);
+			} else{
+				if(!tube.isCounted && bird.getPositionX() > tube.getMinX() && bird.getPositionX() < tube.getMaxX()){
+					bird.addPoint();
+				}
+			}
+		}
 	}
 	
 	public void addTube(Tube tube){
