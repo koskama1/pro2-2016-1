@@ -7,8 +7,8 @@ public class Bird {
 
 	public static final int DEFAULT_SCORE = 0;
 	public static final int DEFAULT_LIVES = 3;
-	public static final int JUMP = 500;
-	
+
+	private static final int JUMP = 500;
 	private static final int GRAVITY = 300;
 	
 	
@@ -27,20 +27,43 @@ public class Bird {
 		lives = DEFAULT_LIVES;
 		score = DEFAULT_SCORE;
 	}
+	public void update(float deltaTime) {
+		 positionY -= speed * deltaTime;
+		 positionY += GRAVITY * deltaTime;
+		 speed -= speed * deltaTime;
+		  	}
 	
 	public void paint(Graphics g){
 		g.setColor(Color.BLUE);
 		
-		g.fillRect(
-				(int) getPositionX() - 25,
-				(int) getPositionY() - 25,
-				50,
-				50
-				);
-	}
+	
+	Rectangle rectangle = getRectangle();	
+	 g.fillRect( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
+
+	 public Rectangle getRectangle(){
+	 return  new Rectangle( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
+	 }
+	 public boolean collideWith(Tube tube){
+	 Rectangle rectangle = getRectangle();
+	 return rectangle.intersects(tube.getTop()) || rectangle.intersects(tube.getBottom());	
+	 }
+	 public boolean collideWith(Heart heart){
+	 return getRectangle().intersects(heart.getRectangle());
+	 }
+	 public boolean isOutOf(){
+	 Rectangle rectangle = getRectangle();
+	 return rectangle.getMaxY() > MainFrame.HEIGHT || rectangle.getMinY() < 0;
+	 }
+	
+	 public void goUp(){
+	 speed = JUMP;			
+	  	}
 	
 	public void update(float deltaTime){
 		positionX += World.SPEED * deltaTime;
+		positionY -= speed * deltaTime;
+		 positionY += GRAVITY * deltaTime;
+		 speed -= speed * deltaTime;
 	}
 	
 	public void goUp(){

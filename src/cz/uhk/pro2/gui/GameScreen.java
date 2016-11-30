@@ -2,11 +2,14 @@ package cz.uhk.pro2.gui;
 
 import java.awt.Color;
 
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-
+import cz.uhk.pro2.gui.WorlListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.Timer;
@@ -16,7 +19,7 @@ import cz.uhk.pro2.model.Heart;
 import cz.uhk.pro2.model.Tube;
 import cz.uhk.pro2.model.World;
 
-public class GameScreen extends Screen {
+public class GameScreen extends Screen implements WorldListener {
 	
 	private long lastTimeMillis;
 	
@@ -79,7 +82,8 @@ public class GameScreen extends Screen {
 		
 		//World
 		Bird bird = new Bird("Bird1", 240, 400);
-		World world = new World(bird);
+		World world = new World(bird, this);
+		
 		world.addTube(new Tube(400, 400, Color.GREEN));
 		world.addTube(new Tube(600, 300, Color.GREEN));
 		world.addTube(new Tube(800, 500, Color.GREEN));
@@ -89,7 +93,13 @@ public class GameScreen extends Screen {
 		
 		GameCanvas gameCanvas = new GameCanvas(world);
 		gameCanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
-		add(gameCanvas);
+		gameCanvas.addMouseListener(new MouseAdapter(){
+		
+			 public void mousePressed(MouseEvent e) {
+				 super.mousePressed(e);
+				 bird.goUp();
+			 	}
+			 });
 		
 		timer = new Timer(20, new ActionListener() {
 			

@@ -1,6 +1,7 @@
 package cz.uhk.pro2.model;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -25,38 +26,38 @@ public class Tube {
 	public void  paint(Graphics g){
 		g.setColor(Color.GREEN);
 		
-		Rectangle topRectangle = getTopRectangle();
-		Rectangle bottomRectangle = getBottomRectangle();
+		Rectangle rectangleB = getBottom();
+		Rectangle rectangleT = getTop();
 		
-		g.fillRect(
-				(int) topRectangle.getX(),
-				(int) topRectangle.getY(),
-				(int) topRectangle.getWidth(),
-				(int) topRectangle.getHeight()
-				);
+		g.fillRect( (int) rectangleB.getX(),
+				 (int) rectangleB.getY(),
+				 (int) rectangleB.getWidth(),
+				 (int) rectangleB.getHeight());
+				 
+		g.fillRect( (int) rectangleT.getX(),
+				 (int) rectangleT.getY(),
+				 (int) rectangleT.getWidth(),
+				 (int) rectangleT.getHeight());
+				 }
+	
+	public void update(float deltaTime){
+		 positionX -= World.getSpeed() * deltaTime;
+		  		
+		 }
+
+	
+	public Rectangle getTop(){
+		 return  new Rectangle( (int) getPositionX() - 25, (int) (height),
+		 50, (int) (MainFrame.HEIGHT-height));
+		 
+		 public Rectangle getBottom(){
+		 return  new Rectangle( (int) getPositionX() - 25, 0,
+		 50, (int) (height-GAP));
+		  	}
 		
-		g.fillRect(
-				(int) bottomRectangle.getX(),
-				(int) bottomRectangle.getY(),
-				(int) bottomRectangle.getWidth(),
-				(int) bottomRectangle.getHeight()
-				);	
+	public static float getRandomHeight(){
+		return (new Random().nexFloat() *300) + 200;		
 	}
-	public Rectangle getBottomRectangle(){
-		return new Rectangle(
-				(int) getPositionX() - (WIDTH / 2),
-				(int) height,
-				50,
-				(int) (MainFrame.HEIGHT - height)
-				);
-		
-		public Rectangle getBottomRectangle(){
-		return new Rectangle(
-				(int)getPositionX() - (WIDTH / 2),
-				0,
-				50,
-				(int) (height - GAP)
-				);
 	
 	public int getCenterY(){
 		return (int) height - GAP/2;
