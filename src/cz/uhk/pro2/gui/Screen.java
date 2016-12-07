@@ -1,6 +1,6 @@
 package cz.uhk.pro2.gui;
 
-import javax.swing.JButton;
+import javax.swing.JButton;	
 import javax.swing.JPanel;
 
 public abstract class Screen extends JPanel {

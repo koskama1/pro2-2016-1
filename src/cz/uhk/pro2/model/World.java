@@ -120,6 +120,10 @@ public class World {
 		+ "Tubes: " + tubes.size() + "\n"
 		+ "Hearts: " + hearts.size();
 	}
+
+	public static float getSpeed() {
+		return 0;
+	}
 	
 	
 }

@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Random;
 
 import cz.uhk.pro2.gui.MainFrame;
 
@@ -56,7 +57,7 @@ public class Tube {
 		  	}
 		
 	public static float getRandomHeight(){
-		return (new Random().nexFloat() *300) + 200;		
+		return (new Random().nextFloat() *300) + 200;		
 	}
 	
 	public int getCenterY(){

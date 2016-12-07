@@ -116,7 +116,8 @@ public class GameScreen extends Screen implements WorldListener {
 				
 				if(!bird.isALive()){
 					timer.stop();
-				}
+					FinishScreen finishScreen = new FinishScreen(mainFrame);
+					mainFrame.setScreen(finishScreen);			}
 				
 				gameCanvas.repaint();
 				
@@ -130,22 +131,28 @@ public class GameScreen extends Screen implements WorldListener {
 		@Override
 		public void crashTube(Tube tube) {
 			bird.removeLive();
-			bird.setPositionY(tube.getCenterY());
+			bird.setPositionY(tube.getCenter());
+			bird.setSpeed(400);
+			
+		}
+
+		@Override
+		public void crashHeart(Heart heart) {
+			
+			System.out.println("srdce");
+		}
+
+		@Override
+		public void outOF() {
+			bird.setSpeed(bird.JUMP);
+			bird.setPositionY(MainFrame.HEIGHT / 2);
+			bird.removeLive();
 		}
 		
-		@Override
-		public void catchHeart(Heart heart) {
+		public void catchHeart(Heart heart){
 			heart.setPositionY(-100);
 			bird.catchHeart();
-		}
-		
-		@Override
-		public void outOf() {
-			bird.setPositionY(MainFrame.HEIGHT / 2);
-			bird.setSpeed(Bird.JUMP / 2);
-			
-			bird.removeLive();
-			
+			bird.addLive();
 		}
 		
 		
