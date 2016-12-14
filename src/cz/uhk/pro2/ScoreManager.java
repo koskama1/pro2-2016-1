@@ -20,17 +20,27 @@ public class ScoreManager {
 		}
 	
 	public void addScore(int score) {
+		
+		List<Integer> scoreList = getAll();
+		
+		scoreList.add(score);
+		
+		
+		
+		
 		FileWriter fileWrite;
 		try {
 			fileWrite = new FileWriter(GAME.SCORE_FILE);
+			for(int value : scoreList) {
+				fileWrite.append(String.valueOf(value));
+				fileWrite.append(";");
+				fileWrite.append(new Date().toGMTString());
+				fileWrite.append("\n");
+				
+				fileWrite.flush();
+				fileWrite.close();
+			}
 			
-			fileWrite.append(String.valueOf(score));
-			fileWrite.append(";");
-			fileWrite.append(new Date().toGMTString());
-			fileWrite.append("\n");
-			
-			fileWrite.flush();
-			fileWrite.close();
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
