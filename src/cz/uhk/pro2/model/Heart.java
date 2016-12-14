@@ -2,6 +2,8 @@ package cz.uhk.pro2.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
 
 public class Heart {
 
@@ -13,6 +15,21 @@ public class Heart {
 		this.positionY = positionY;
 	}
 	
+	public float getPositionX() {
+		return positionX;
+	}	
+	public float getPositionY() {
+		return positionY;
+	}
+	
+	public void setPositionX(float positionX) {
+		this.positionX = positionX;
+	}	
+	public void setPositionY(float positionY) {
+		this.positionY = positionY;
+	}
+	
+	
 	public void paint(Graphics g){
 		g.setColor(Color.RED);
 		
@@ -23,35 +40,24 @@ public class Heart {
 		 (int)rectangle.getWidth(),
 		 (int)rectangle.getHeight());
 		 }
-		 public void update(float deltaTime){
+	
+	public void update(float deltaTime){
 		 positionX -= World.getSpeed() * deltaTime;	
-		 }
-		 public Rectangle getRectangle(){
+	}
+	
+	public Rectangle getRectangle(){
 		 return  new Rectangle( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
-		  	}
-		  
-		  
 	}
 
 	public static float getRandomY(){
-		return (new Random().nextFoat() *300) + 200;
+		return (new Random().nextFloat() *300) + 200;
 	}
 
-	public float getPositionX() {
-		return positionX;
-	}
 
-	public void setPositionX(float positionX) {
-		this.positionX = positionX;
-	}
 
-	public float getPositionY() {
-		return positionY;
-	}
 
-	public void setPositionY(float positionY) {
-		this.positionY = positionY;
-	}
+
+
 	
 	
 	

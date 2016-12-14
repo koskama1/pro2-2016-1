@@ -1,7 +1,12 @@
 package cz.uhk.pro2.model;
 
-import java.awt.Color;
+import java.awt.Color;	
 import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import cz.uhk.pro2.gui.GameCanvas;
+import cz.uhk.pro2.gui.GameScreen;
+import cz.uhk.pro2.gui.MainFrame;
 
 public class Bird {
 
@@ -27,102 +32,119 @@ public class Bird {
 		lives = DEFAULT_LIVES;
 		score = DEFAULT_SCORE;
 	}
+	
 	public void update(float deltaTime) {
 		 positionY -= speed * deltaTime;
 		 positionY += GRAVITY * deltaTime;
 		 speed -= speed * deltaTime;
+		 
 		  	}
 	
 	public void paint(Graphics g){
 		g.setColor(Color.BLUE);
 		
+		Rectangle rectangle = getRectangle();	
+		g.fillRect( (int) getPositionX(),(int) getPositionY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+		}
 	
-	Rectangle rectangle = getRectangle();	
-	 g.fillRect( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
-
 	 public Rectangle getRectangle(){
-	 return  new Rectangle( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
+		 return  new Rectangle( (int) getPositionX() - 25,(int) getPositionY() - 2, 50, 50);
 	 }
+	 
 	 public boolean collideWith(Tube tube){
-	 Rectangle rectangle = getRectangle();
-	 return rectangle.intersects(tube.getTop()) || rectangle.intersects(tube.getBottom());	
+		 Rectangle rectangle = getRectangle();
+		 return rectangle.intersects(tube.getTop()) || rectangle.intersects(tube.getBottom());	
 	 }
+	 
 	 public boolean collideWith(Heart heart){
-	 return getRectangle().intersects(heart.getRectangle());
+		 return getRectangle().intersects(heart.getRectangle());
 	 }
+	 
 	 public boolean isOutOf(){
-	 Rectangle rectangle = getRectangle();
-	 return rectangle.getMaxY() > MainFrame.HEIGHT || rectangle.getMinY() < 0;
+		 Rectangle rectangle = getRectangle();
+		 int upLimit = GameCanvas.UP_BOUND;
+		 int downLimit = MainFrame.HEIGHT - GameCanvas.DOWN_BOUND;
+		 
+		 return rectangle.getMaxY() > downLimit || rectangle.getMinY() < upLimit;
 	 }
 	
 	 public void goUp(){
-	 speed = JUMP;			
+		 speed = JUMP;			
 	  	}
+	 
+	 public void addLive() {
+		 lives++;
+	 }	 
+	 public void removeLive(){
+			lives--;
+		}
+	 
+	 public void addPoint(){
+			score++;
+	 }
+	 
+	 public int getScore() {
+			return score;
+		}
 	
-	public void update(float deltaTime){
-		positionX += World.SPEED * deltaTime;
-		positionY -= speed * deltaTime;
-		 positionY += GRAVITY * deltaTime;
-		 speed -= speed * deltaTime;
-	}
+	 public float getPositionX(){
+			return positionX;
+		}	 
+	 public float getPositionY() {
+			return positionY;
+	 }
+	 
+	 public void setPositionX(float positionX) {
+			this.positionX = positionX;
+	 }
+	 public void setPositionY(float positionY) {
+			this.positionY = positionY;
+	 }
+	 
+	 public float getSpeed() {
+			return speed;
+	 }
+	 public void setSpeed(float speed) {
+			this.speed = speed;
+	 }
+	 
+	 public int getLives() {
+			return lives;
+	 }
+	 public void setLives(int lifes) {
+			this.lives = lives;
+	 }
+	 
+	 public String getName(){
+			return name;
+		}
+	 
+	 public boolean isALive() {
+		 	if (getLives() <= 0)
+		 		return false;
+		 	return true;
+		}
+			
+	 public String toString() {
+		return "["  + name + ", " + positionX + "; " + positionY + "]" ;
+	 }
 	
-	public void goUp(){
-		speed=JUMP;
-	}
-	public void catchHeart(){
+	 public void catchHeart(){
 		lives++;
-	}
+	 }
 
-	public void removeLive(){
-		lives--;
-	}
-	public void addPoint(){
-		score++;
-	}
-	
-	public boolean isALive(){
-		return lives > 0;
-	}
+
+
 	
 	
 	
-	public int getScore() {
-		return score;
-	}
+	
+	
+	
 
-	public String getJmeno(){
-		return name;
-	}
-	public float getPositionX(){
-		return positionX;
-	}
-	public void setPositionX(float positionX) {
-		this.positionX = positionX;
-	}
-	public float getPositionY() {
-		return positionY;
-	}
-	public void setPositionY(float positionY) {
-		this.positionY = positionY;
-	}
-	public float getSpeed() {
-		return speed;
-	}
-	public void setSpeed(float speed) {
-		this.speed = speed;
-	}
+	
+	
 
-	public int getLives() {
-		return lives;
-	}
-
-	public void setLives(int lifes) {
-		this.lives = lives;
-	}
-
-	public String getName() {
-		return name;
-	}
 
 	
 

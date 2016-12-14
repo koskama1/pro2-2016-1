@@ -4,13 +4,15 @@ import java.awt.Color;
 
 public class Ground {
 
-	private float height;
-	private Color color;
 	public Ground(float height, Color color) {
 		super();
 		this.height = height;
 		this.color = color;
 	}
+	
+	private float height;
+	private Color color;
+	
 	public float getHeight() {
 		return height;
 	}

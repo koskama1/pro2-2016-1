@@ -6,6 +6,7 @@ import java.util.List;
 public class ScoreManager {
 	
 	private List<Integer> scoreList;
+	private static ScoreManager instance;
 	
 	private ScoreManager() {
 		this.scoreList = new ArrayList<>();
@@ -19,7 +20,6 @@ public class ScoreManager {
 		return scoreList;
 	}
 	
-	private static ScoreManager instance;
 	
 	public static ScoreManager getInstance() {
 		if(instance == null) {

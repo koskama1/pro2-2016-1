@@ -1,6 +1,6 @@
 package cz.uhk.pro2;
 
-import cz.uhk.pro2.gui.GameScreen;
+import cz.uhk.pro2.gui.ScoreScreen;	
 import cz.uhk.pro2.gui.HomeScreen;
 import cz.uhk.pro2.gui.MainFrame;
 

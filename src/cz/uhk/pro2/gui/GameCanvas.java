@@ -13,8 +13,8 @@ import cz.uhk.pro2.model.World;
 public class GameCanvas extends Canvas {
 	private World world;
 	
-	public static int UP_DOWN = 100;
-	public static int UP_BOUND = 70;
+	public static int UP_BOUND = 100;
+	public static int DOWN_BOUND = 70;
 	
 	public GameCanvas(World world){
 		this.world = world;
@@ -22,7 +22,6 @@ public class GameCanvas extends Canvas {
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
 		
 		g.setColor(Color.cyan);
 		g.fillRect(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
