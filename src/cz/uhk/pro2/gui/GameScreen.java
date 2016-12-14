@@ -125,6 +125,7 @@ public class GameScreen extends Screen implements WorldListener {
 		
 		lastTimeMillis = System.currentTimeMillis();
 		timer.start();
+	}
 		
 		@Override
 		public void crashTube(Tube tube) {
@@ -135,18 +136,13 @@ public class GameScreen extends Screen implements WorldListener {
 		}
 
 		@Override
-		public void crashHeart(Heart heart) {
-			
-			System.out.println("srdce");
-		}
-	
-		@Override
 		public void outOF() {
 			bird.setSpeed(bird.JUMP);
 			bird.setPositionY(MainFrame.HEIGHT / 2);
 			bird.removeLive();
 		}
 		
+		@Override
 		public void catchHeart(Heart heart) {
 			heart.setPositionY(-100);
 			bird.catchHeart();
@@ -154,6 +150,6 @@ public class GameScreen extends Screen implements WorldListener {
 		}
 		
 		
-	}
+	
 
 }

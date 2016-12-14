@@ -3,6 +3,7 @@ package cz.uhk.pro2.model;
 import java.awt.Color;	
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 
 import cz.uhk.pro2.gui.GameCanvas;
 import cz.uhk.pro2.gui.GameScreen;
@@ -13,7 +14,7 @@ public class Bird {
 	public static final int DEFAULT_SCORE = 0;
 	public static final int DEFAULT_LIVES = 3;
 
-	private static final int JUMP = 500;
+	public static final int JUMP = 500;
 	private static final int GRAVITY = 300;
 	
 	
@@ -40,10 +41,19 @@ public class Bird {
 		 
 		  	}
 	
-	public void paint(Graphics g){
+	public void paint(Graphics g, BufferedImage image){
 		g.setColor(Color.BLUE);
 		
 		Rectangle rectangle = getRectangle();	
+		
+		g.drawImage(image,
+				(int) rectangle.getX(),
+				(int) rectangle.getY(),
+				(int) rectangle.getWidth(),
+				(int) rectangle.getHeight(),
+				null);
+		
+		
 		g.fillRect( (int) getPositionX(),(int) getPositionY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
 		}
 	
@@ -132,6 +142,7 @@ public class Bird {
 	 public void catchHeart(){
 		lives++;
 	 }
+
 
 
 

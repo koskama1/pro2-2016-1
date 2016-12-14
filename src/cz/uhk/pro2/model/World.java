@@ -48,7 +48,7 @@ public class World {
 			tube.update(deltaTime);
 			
 			if(bird.collideWith(tube)){
-				tube.setPrulet(true)
+				tube.setPrulet(true);
 				worldListener.crashTube(tube);
 				
 			} else{

@@ -3,6 +3,7 @@ package cz.uhk.pro2.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 
@@ -69,11 +70,24 @@ public class Tube {
 	}
 	
 	
-	public void  paint(Graphics g){
+	public void  paint(Graphics g, BufferedImage imageTube, BufferedImage imageBottom){
 		g.setColor(Color.GREEN);
 		
 		Rectangle rectangleB = getBottom();
 		Rectangle rectangleT = getTop();
+		
+		g.drawImage(imageTube,
+				(int) rectangleT.getX(),
+				(int) rectangleT.getY(),
+				(int) rectangleT.getWidth(),
+				(int) rectangleT.getHeight(),
+				null);
+		g.drawImage(imageBottom,
+				(int) rectangleB.getX(),
+				(int) rectangleB.getY(),
+				(int) rectangleB.getWidth(),
+				(int) rectangleB.getHeight(),
+				null);
 		
 		g.fillRect( (int) rectangleB.getX(),
 				 (int) rectangleB.getY(),

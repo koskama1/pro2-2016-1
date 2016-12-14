@@ -3,6 +3,7 @@ package cz.uhk.pro2.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Heart {
@@ -30,10 +31,17 @@ public class Heart {
 	}
 	
 	
-	public void paint(Graphics g){
+	public void paint(Graphics g, BufferedImage imageHeart){
 		g.setColor(Color.RED);
 		
 		Rectangle rectangle = getRectangle();
+		
+		g.drawImage(imageHeart,
+				(int) rectangle.getX(),
+				(int) rectangle.getY(),
+				(int) rectangle.getWidth(),
+				(int) rectangle.getHeight(),
+				null);
 		  
 		 g.fillRect( (int) rectangle.getX(),
 		 (int) rectangle.getY()	,
